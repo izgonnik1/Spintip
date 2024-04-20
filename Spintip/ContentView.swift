@@ -7,15 +7,35 @@
 
 import SwiftUI
 
+/// Main content view
 struct ContentView: View {
+    
+    /// indicate that splash screen was presented
+    @State var showSplash: Bool = false
+    /// indicate that tutorial was skipped by user
+    @State var skipTutorial: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            if self.showSplash {
+                TutorialView(onSkip: {
+                    skipTutorial = true
+                })
+                
+                if skipTutorial {
+                    LoginView()
+                }
+            } else {
+                SplashScreen()
+            }
         }
-        .padding()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                withAnimation {
+                    self.showSplash = true
+                }
+            }
+        }
     }
 }
 

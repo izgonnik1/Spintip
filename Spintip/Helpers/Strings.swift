@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+/// Struct contain all strings constant 
+struct StringsConstant {
+    static let appName = "SPINTIP"
+}

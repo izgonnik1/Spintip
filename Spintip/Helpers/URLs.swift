@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+/// Struct contain all strings constant
+struct URLsConstant {
+    static let baseApiURL = "https://test.com/v1/"
+}
